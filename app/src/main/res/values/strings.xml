@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HelloKotlin</string>
+    <string name="btn_login_text">登入</string>
+    <string name="title_navigation_home">首頁</string>
+    <string name="title_navigation_member">會員</string>
+    <string name="title_navigation_event">活動</string>
+
+
+</resources>

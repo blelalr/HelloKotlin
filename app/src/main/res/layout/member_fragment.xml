@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".member.MemberFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_token"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            tools:text="token"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
+
+        <TextView
+            android:id="@+id/tv_user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            tools:text="user id"
+            app:layout_constraintEnd_toEndOf="@+id/tv_token"
+            app:layout_constraintStart_toStartOf="@+id/tv_token"
+            app:layout_constraintTop_toBottomOf="@+id/tv_token" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            tools:text="name"
+            app:layout_constraintEnd_toEndOf="@+id/tv_token"
+            app:layout_constraintStart_toStartOf="@+id/tv_token"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_id" />
+        <TextView
+            android:id="@+id/tv_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="10dp"
+            tools:text="email"
+            app:layout_constraintEnd_toEndOf="@+id/tv_token"
+            app:layout_constraintStart_toStartOf="@+id/tv_token"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+        <LinearLayout
+            android:id="@+id/login_btns_root_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_facebook_login"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="2dp"
+                android:padding="10dp"
+                android:text="Facebook 登入"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryTextColor"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/ic_facebook"
+                app:iconGravity="textStart"
+                app:iconTint="@null"
+                app:rippleColor="@color/secondaryTextColor" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_google_login"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="2dp"
+                android:padding="10dp"
+                android:text="Google 登入"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryTextColor"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/ic_google"
+                app:iconGravity="textStart"
+                app:iconTint="@null"
+                app:rippleColor="@color/secondaryTextColor" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_logout"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:elevation="2dp"
+            android:padding="10dp"
+            android:textAllCaps="false"
+            android:textColor="@color/secondaryTextColor"
+            android:visibility="gone"
+            app:backgroundTint="@android:color/white"
+            app:cornerRadius="10dp"
+            app:iconGravity="textStart"
+            app:iconTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_btns_root_view"
+            app:rippleColor="@color/secondaryTextColor"
+            tools:text="Google 登出" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
