@@ -24,6 +24,7 @@ class MemberFragment : Fragment() {
     lateinit var memberViewModel: MemberViewModel
     lateinit var facebookLoginButton: MaterialButton
     lateinit var googleLoginButton: MaterialButton
+    lateinit var lineLoginButton: MaterialButton
     lateinit var logoutButton: MaterialButton
     lateinit var loginBtnsRootView: LinearLayout
     lateinit var socialToken: TextView
@@ -48,6 +49,7 @@ class MemberFragment : Fragment() {
         userEmail = view.findViewById(R.id.tv_email)
         facebookLoginButton = view.findViewById(R.id.btn_facebook_login)
         googleLoginButton = view.findViewById(R.id.btn_google_login)
+        lineLoginButton = view.findViewById(R.id.btn_line_login)
         logoutButton = view.findViewById(R.id.btn_logout)
         loginBtnsRootView = view.findViewById(R.id.login_btns_root_view)
     }
@@ -64,15 +66,19 @@ class MemberFragment : Fragment() {
             Auth.getInstance().login(activity, PlatformType.Google)
         }
 
+        lineLoginButton.setOnClickListener{
+            Auth.getInstance().login(activity, PlatformType.Line)
+        }
+
         logoutButton.setOnClickListener {
             Auth.getInstance().logout()
         }
 
-        initObserve()
+        initObserver()
 
     }
 
-    private fun initObserve() {
+    private fun initObserver() {
         Auth.getInstance().userInfo.observe(this, Observer { userInfo:UserInfo ->
 
             if(userInfo.isLogin) {

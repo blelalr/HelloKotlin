@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.sociallogin.Facebook.FacebookLogin;
 import com.example.sociallogin.Google.GoogleLogin;
+import com.example.sociallogin.Line.LineLogin;
 import com.example.sociallogin.model.UserInfo;
 
 import org.jetbrains.annotations.NotNull;
@@ -18,7 +19,6 @@ public class Auth {
     private MutableLiveData<UserInfo> userInfo;
     private BaseSocialLogin socialLogin;
     public static int GOOGLE_SIGN_IN = 1000;
-    public static int FACEBOOK_SIGN_IN = 1001;
     public static int LINE_SIGN_IN = 1002;
 
 
@@ -40,6 +40,7 @@ public class Auth {
                 socialLogin = new FacebookLogin(activity);
                 break;
             case Line:
+                socialLogin = new LineLogin(activity);
                 break;
         }
 
@@ -52,7 +53,6 @@ public class Auth {
 
 
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        socialLogin.responseListener.onResult(data.get);
         socialLogin.onActivityResult(requestCode, resultCode, data);
     }
 

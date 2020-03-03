@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.sociallogin.model.UserInfo;
 
+import static com.example.sociallogin.Auth.getInstance;
+
 
 public abstract class BaseSocialLogin {
     interface OnResponseListener {
@@ -20,12 +22,14 @@ public abstract class BaseSocialLogin {
         this.activity = activity;
     }
 
-    protected abstract void onActivityResult(int requestCode, int resultCode, Intent data);
-
     protected abstract void login();
 
-    public void logout(boolean clearToken) {
+    protected abstract void onActivityResult(int requestCode, int resultCode, Intent data);
 
+    public void logout(boolean clearToken) {
+        if(clearToken) {
+            getInstance().getUserInfo().setValue(new UserInfo());
+        }
     }
 
     protected void callbackAsFail(Exception exception) {
