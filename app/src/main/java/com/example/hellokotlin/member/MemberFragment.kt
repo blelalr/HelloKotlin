@@ -60,6 +60,10 @@ class MemberFragment : Fragment() {
             Auth.getInstance().login(activity ,PlatformType.Facebook)
         }
 
+        googleLoginButton.setOnClickListener{
+            Auth.getInstance().login(activity, PlatformType.Google)
+        }
+
         logoutButton.setOnClickListener {
             Auth.getInstance().logout()
         }

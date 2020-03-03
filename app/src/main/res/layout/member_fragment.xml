@@ -16,12 +16,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            tools:text="token"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintVertical_bias="0.03"
+            tools:text="token" />
 
         <TextView
             android:id="@+id/tv_user_id"
@@ -29,10 +29,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            tools:text="user id"
             app:layout_constraintEnd_toEndOf="@+id/tv_token"
             app:layout_constraintStart_toStartOf="@+id/tv_token"
-            app:layout_constraintTop_toBottomOf="@+id/tv_token" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_token"
+            tools:text="user id" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -40,20 +40,21 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            tools:text="name"
             app:layout_constraintEnd_toEndOf="@+id/tv_token"
             app:layout_constraintStart_toStartOf="@+id/tv_token"
-            app:layout_constraintTop_toBottomOf="@+id/tv_user_id" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_id"
+            tools:text="name" />
+
         <TextView
             android:id="@+id/tv_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="10dp"
-            tools:text="email"
             app:layout_constraintEnd_toEndOf="@+id/tv_token"
             app:layout_constraintStart_toStartOf="@+id/tv_token"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_name"
+            tools:text="email" />
 
         <LinearLayout
             android:id="@+id/login_btns_root_view"
@@ -62,9 +63,11 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.97"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_email">
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn_facebook_login"
@@ -102,6 +105,24 @@
                 app:iconTint="@null"
                 app:rippleColor="@color/secondaryTextColor" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_line_login"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:elevation="2dp"
+                android:padding="10dp"
+                android:text="Line 登入"
+                android:textAllCaps="false"
+                android:textColor="@color/secondaryTextColor"
+                app:backgroundTint="@android:color/white"
+                app:cornerRadius="10dp"
+                app:icon="@drawable/ic_line"
+                app:iconGravity="textStart"
+                app:iconTint="@null"
+                app:rippleColor="@color/secondaryTextColor" />
+
 
         </LinearLayout>
 
@@ -120,9 +141,11 @@
             app:cornerRadius="10dp"
             app:iconGravity="textStart"
             app:iconTint="@null"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_btns_root_view"
+            app:layout_constraintTop_toBottomOf="@+id/tv_email"
+            app:layout_constraintVertical_bias="0.93"
             app:rippleColor="@color/secondaryTextColor"
             tools:text="Google 登出" />
 

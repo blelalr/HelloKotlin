@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.sociallogin.Facebook.FacebookLogin;
+import com.example.sociallogin.Google.GoogleLogin;
 import com.example.sociallogin.model.UserInfo;
 
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,10 @@ public class Auth {
     private static Auth instance;
     private MutableLiveData<UserInfo> userInfo;
     private BaseSocialLogin socialLogin;
+    public static int GOOGLE_SIGN_IN = 1000;
+    public static int FACEBOOK_SIGN_IN = 1001;
+    public static int LINE_SIGN_IN = 1002;
+
 
     private Auth() {}
 
@@ -29,6 +34,7 @@ public class Auth {
     public void login(FragmentActivity activity, @NotNull PlatformType socialType) {
         switch (socialType) {
             case Google:
+                socialLogin = new GoogleLogin(activity);
                 break;
             case Facebook:
                 socialLogin = new FacebookLogin(activity);
@@ -41,16 +47,7 @@ public class Auth {
     }
 
     public void logout() {
-        switch (userInfo.getValue().getPlatformType()) {
-            case Google:
-                break;
-            case Facebook:
-                socialLogin.logout(true);
-                break;
-            case Line:
-                break;
-        }
-
+        socialLogin.logout(true);
     }
 
 
