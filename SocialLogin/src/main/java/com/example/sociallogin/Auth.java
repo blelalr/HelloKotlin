@@ -1,6 +1,7 @@
 package com.example.sociallogin;
 
 import android.content.Intent;
+
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.MutableLiveData;
 
@@ -13,23 +14,14 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class Auth {
-    private static Auth instance;
-    private MutableLiveData<UserInfo> userInfo;
-    private BaseSocialLogin socialLogin;
+    private static BaseSocialLogin socialLogin;
+    private static MutableLiveData<UserInfo> userInfo;
     public static int GOOGLE_SIGN_IN = 1000;
     public static int LINE_SIGN_IN = 1002;
+    public static String TAG = Auth.class.getSimpleName();
 
-    private Auth() {}
-
-    public static Auth getInstance() {
-        if(instance == null) {
-            instance = new Auth();
-        }
-        return instance;
-    }
-
-    public void login(FragmentActivity activity, @NotNull PlatformType socialType) {
-        switch (socialType) {
+    public static void login(FragmentActivity activity, @NotNull PlatformType platformType) {
+        switch (platformType) {
             case Google:
                 socialLogin = new GoogleLogin(activity);
                 break;
@@ -44,23 +36,24 @@ public class Auth {
         socialLogin.login();
     }
 
-    public void logout() {
+    public static void logout() {
+
         socialLogin.logout(true);
     }
 
-
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public static void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         socialLogin.onActivityResult(requestCode, resultCode, data);
     }
 
-    public MutableLiveData<UserInfo> getUserInfo() {
-        if(this.userInfo == null ) {
-            this.userInfo = new MutableLiveData<>();
+    public static MutableLiveData<UserInfo> getUserInfo() {
+        if(userInfo == null ) {
+            userInfo = new MutableLiveData<>();
         }
         return userInfo;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo.setValue(userInfo);
+    public static void setUserInfo(UserInfo mUserInfo) {
+        userInfo.setValue(mUserInfo);
     }
+
 }

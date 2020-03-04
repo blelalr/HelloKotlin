@@ -5,10 +5,10 @@ import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.sociallogin.Auth;
 import com.example.sociallogin.BaseSocialLogin;
 import com.example.sociallogin.PlatformType;
 import com.example.sociallogin.R;
-import com.example.sociallogin.SocialLogin;
 import com.example.sociallogin.model.UserInfo;
 import com.google.gson.Gson;
 import com.linecorp.linesdk.Scope;
@@ -19,7 +19,6 @@ import com.linecorp.linesdk.auth.LineLoginResult;
 import java.util.Arrays;
 
 import static com.example.sociallogin.Auth.LINE_SIGN_IN;
-import static com.example.sociallogin.Auth.getInstance;
 
 public class LineLogin extends BaseSocialLogin {
 
@@ -30,7 +29,7 @@ public class LineLogin extends BaseSocialLogin {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode != LINE_SIGN_IN) {
-            Log.e(SocialLogin.TAG, "Unsupported Request");
+            Log.e(Auth.TAG, "Unsupported Request");
             return;
         }
 
@@ -40,7 +39,7 @@ public class LineLogin extends BaseSocialLogin {
 
             case SUCCESS:
                 // Login successful
-                Log.d(SocialLogin.TAG, "Success");
+                Log.d(Auth.TAG, "Success");
                 UserInfo userInfo = new UserInfo();
                 userInfo.setLogin(true);
                 userInfo.setPlatformType(PlatformType.Line);
@@ -48,19 +47,19 @@ public class LineLogin extends BaseSocialLogin {
                 userInfo.setName(result.getLineProfile().getDisplayName());
                 userInfo.setToken(result.getLineCredential().getAccessToken().getTokenString());
                 // Signed in successfully, show authenticated UI.
-                getInstance().setUserInfo(userInfo);
-                Log.d(SocialLogin.TAG, "UserInfo" + new Gson().toJson(userInfo));
+                Auth.setUserInfo(userInfo);
+                Log.d(Auth.TAG, "UserInfo" + new Gson().toJson(userInfo));
                 break;
 
             case CANCEL:
                 // Login canceled by user
-                Log.e(SocialLogin.TAG,"ERROR: LINE Login Canceled by user.");
+                Log.e(Auth.TAG,"ERROR: LINE Login Canceled by user.");
                 break;
 
             default:
                 // Login canceled due to other error
-                Log.e(SocialLogin.TAG,"ERROR: Login FAILED!");
-                Log.e(SocialLogin.TAG,"ERROR: " +result.getErrorData().toString());
+                Log.e(Auth.TAG,"ERROR: Login FAILED!");
+                Log.e(Auth.TAG,"ERROR: " +result.getErrorData().toString());
         }
     }
 
@@ -77,7 +76,7 @@ public class LineLogin extends BaseSocialLogin {
 
         }
         catch(Exception e) {
-            Log.e(SocialLogin.TAG,"ERROR" + e.toString());
+            Log.e(Auth.TAG,"ERROR" + e.toString());
         }
     }
 
