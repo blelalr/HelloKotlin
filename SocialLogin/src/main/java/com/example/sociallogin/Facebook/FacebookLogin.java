@@ -60,12 +60,13 @@ public class FacebookLogin extends BaseSocialLogin {
 
             @Override
             public void onCancel() {
-                Log.d(SocialLogin.TAG, "Cancel");
+                Log.e(SocialLogin.TAG, "Cancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.d(SocialLogin.TAG, "Error" +error.getMessage());
+
+                Log.e(SocialLogin.TAG, "Error" +error.getMessage());
 //                callbackAsFail(error);
             }
         });
@@ -73,10 +74,8 @@ public class FacebookLogin extends BaseSocialLogin {
 
     @Override
     public void logout(boolean clearToken) {
+        super.logout(clearToken);
         LoginManager.getInstance().logOut();
-        if(clearToken) {
-            getInstance().getUserInfo().setValue(new UserInfo());
-        }
     }
 
     private void loginSuccess(LoginResult loginResult){

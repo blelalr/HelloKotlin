@@ -1,7 +1,6 @@
 
 package com.example.sociallogin.model;
 
-import com.example.sociallogin.Facebook.FacebookLogin;
 import com.example.sociallogin.PlatformType;
 
 import java.io.Serializable;

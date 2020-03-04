@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import com.example.sociallogin.BaseSocialLogin;
 import com.example.sociallogin.PlatformType;
+import com.example.sociallogin.R;
 import com.example.sociallogin.SocialLogin;
 import com.example.sociallogin.model.UserInfo;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -30,7 +31,7 @@ public class GoogleLogin extends BaseSocialLogin {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .requestId()
-                .requestIdToken("789751588120-jdsvmcn0hflbav3lqq7qv9vm280vp9cu.apps.googleusercontent.com")
+                .requestIdToken(activity.getString(R.string.google_default_web_client_id))
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(activity, gso);
@@ -51,9 +52,6 @@ public class GoogleLogin extends BaseSocialLogin {
     public void logout(boolean clearToken) {
         super.logout(clearToken);
         mGoogleSignInClient.signOut();
-        if(clearToken) {
-            getInstance().getUserInfo().setValue(new UserInfo());
-        }
     }
 
     @Override
@@ -65,7 +63,6 @@ public class GoogleLogin extends BaseSocialLogin {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             Log.d(SocialLogin.TAG, "Success");
-
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
             UserInfo userInfo = new UserInfo();
             userInfo.setLogin(true);
@@ -82,8 +79,8 @@ public class GoogleLogin extends BaseSocialLogin {
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
             // Please refer to the GoogleSignInStatusCodes class reference for more information.
-            Log.d(SocialLogin.TAG, "Error: failed code: " + e.getStatusCode());
-            Log.d(SocialLogin.TAG, "Error: error message: " +e.getMessage());
+            Log.e(SocialLogin.TAG, "Error: failed code: " + e.getStatusCode());
+            Log.e(SocialLogin.TAG, "Error: error message: " +e.getMessage());
         }
     }
 }
