@@ -59,19 +59,19 @@ class MemberFragment : Fragment() {
         memberViewModel = ViewModelProviders.of(this.requireActivity()).get(MemberViewModel::class.java)
 
         facebookLoginButton.setOnClickListener {
-            Auth.getInstance().login(activity ,PlatformType.Facebook)
+            Auth.login(activity ,PlatformType.Facebook)
         }
 
         googleLoginButton.setOnClickListener{
-            Auth.getInstance().login(activity, PlatformType.Google)
+            Auth.login(activity, PlatformType.Google)
         }
 
         lineLoginButton.setOnClickListener{
-            Auth.getInstance().login(activity, PlatformType.Line)
+            Auth.login(activity, PlatformType.Line)
         }
 
         logoutButton.setOnClickListener {
-            Auth.getInstance().logout()
+            Auth.logout()
         }
 
         initObserver()
@@ -79,7 +79,7 @@ class MemberFragment : Fragment() {
     }
 
     private fun initObserver() {
-        Auth.getInstance().userInfo.observe(this, Observer { userInfo:UserInfo ->
+        Auth.getUserInfo().observe(this, Observer { userInfo:UserInfo ->
 
             if(userInfo.isLogin) {
                 loginBtnsRootView.visibility = View.GONE

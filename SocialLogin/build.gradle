@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.blelalr'
 
 Properties properties = new Properties()
 properties.load(project.rootProject.file("local.properties").newDataInputStream())
@@ -18,8 +20,7 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        versionName "1.0.0"
 
         resValue("string", "facebook_app_id", properties.getProperty("facebook_app_id",""))
         resValue("string", "fb_login_protocol_scheme", properties.getProperty("fb_login_protocol_scheme",""))
@@ -44,13 +45,16 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
-    implementation "androidx.core:core-ktx:+"
+
+    implementation 'androidx.core:core-ktx:+'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.facebook.android:facebook-android-sdk:[4,5)'
     implementation 'com.google.code.gson:gson:2.8.6'
+
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
     implementation "com.linecorp.linesdk:linesdk:$linesdk_version"
 }
+
 repositories {
     mavenCentral()
 }

@@ -6,9 +6,9 @@ import android.util.Log;
 
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.sociallogin.Auth;
 import com.example.sociallogin.BaseSocialLogin;
 import com.example.sociallogin.PlatformType;
-import com.example.sociallogin.SocialLogin;
 import com.example.sociallogin.model.UserInfo;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -20,13 +20,11 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.google.gson.Gson;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
 
-import static com.example.sociallogin.Auth.getInstance;
 
 
 public class FacebookLogin extends BaseSocialLogin {
@@ -54,18 +52,18 @@ public class FacebookLogin extends BaseSocialLogin {
         LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-                Log.d(SocialLogin.TAG, "Success");
+                Log.d(Auth.TAG, "Success");
                 loginSuccess(loginResult);
             }
 
             @Override
             public void onCancel() {
-                Log.e(SocialLogin.TAG, "Cancel");
+                Log.e(Auth.TAG, "Cancel");
             }
 
             @Override
             public void onError(FacebookException error) {
-                Log.e(SocialLogin.TAG, "Error" +error.getMessage());
+                Log.e(Auth.TAG, "Error" +error.getMessage());
 //                callbackAsFail(error);
             }
         });
@@ -91,9 +89,9 @@ public class FacebookLogin extends BaseSocialLogin {
                             userInfo.setName(obj.optString("name"));
                             userInfo.setEmail(obj.optString("email"));
                             userInfo.setLogin(true);
-                            getInstance().setUserInfo(userInfo);
+                            Auth.setUserInfo(userInfo);
 //                            callbackAsSuccess(userInfo);
-                            Log.d(SocialLogin.TAG, "UserInfo" + new Gson().toJson(userInfo));
+                            Log.d(Auth.TAG, "UserInfo" + new Gson().toJson(userInfo));
                         }
                     }
 
