@@ -8,7 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.example.hellokotlin.R
 import com.example.sociallogin.Auth
 import com.example.sociallogin.PlatformType
@@ -56,7 +56,7 @@ class MemberFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        memberViewModel = ViewModelProviders.of(this.requireActivity()).get(MemberViewModel::class.java)
+        memberViewModel = ViewModelProvider(this.requireActivity()).get(MemberViewModel::class.java)
 
         facebookLoginButton.setOnClickListener {
             Auth.login(activity ,PlatformType.Facebook)
@@ -79,7 +79,7 @@ class MemberFragment : Fragment() {
     }
 
     private fun initObserver() {
-        Auth.getUserInfo().observe(this, Observer { userInfo:UserInfo ->
+        Auth.getUserInfo().observe(viewLifecycleOwner, Observer { userInfo:UserInfo ->
 
             if(userInfo.isLogin) {
                 loginBtnsRootView.visibility = View.GONE
