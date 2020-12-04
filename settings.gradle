@@ -1,2 +1,2 @@
-include ':app', ':SocialLogin'
+include ':app'
 rootProject.name='HelloKotlin'
