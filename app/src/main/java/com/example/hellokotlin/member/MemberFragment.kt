@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.hellokotlin.R
 import com.example.sociallogin.Auth
@@ -79,16 +78,15 @@ class MemberFragment : Fragment() {
     }
 
     private fun initObserver() {
-        Auth.getUserInfo().observe(viewLifecycleOwner, Observer { userInfo:UserInfo ->
-
-            if(userInfo.isLogin) {
+        Auth.getUserInfo().observe(viewLifecycleOwner, {
+            if(it.isLogin) {
                 loginBtnsRootView.visibility = View.GONE
                 logoutButton.visibility = View.VISIBLE
-                logoutButton.text = userInfo.platformType.name + "登出"
-                socialToken.text = userInfo?.token
-                userId.text = userInfo?.id
-                userName.text = userInfo?.name
-                userEmail.text = userInfo?.getmEmail()
+                logoutButton.text = it.platformType.name + "登出"
+                socialToken.text = it?.token
+                userId.text = it?.id
+                userName.text = it?.name
+                userEmail.text = it?.getmEmail()
 
             } else {
                 loginBtnsRootView.visibility = View.VISIBLE
@@ -98,12 +96,6 @@ class MemberFragment : Fragment() {
                 userName.text = ""
                 userEmail.text = ""
             }
-//            userInfo.token?.let {
-//
-//
-//            } ?: run {
-//
-//            }
         })
 
 

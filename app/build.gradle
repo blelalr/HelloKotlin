@@ -51,6 +51,6 @@ dependencies {
     kapt 'com.jakewharton:butterknife-compiler:10.2.3'
     implementation 'com.jakewharton:butterknife:10.2.3'
     implementation 'com.android.support.constraint:constraint-layout:2.0.1'
-    implementation 'com.android.appcore:social-login:1.0.0'
+    implementation 'com.android.appcore:social-login:1.0.2'
 
 }
